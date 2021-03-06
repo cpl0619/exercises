@@ -1,4 +1,4 @@
-/*int mydelay = 30;
+int mydelay = 30;
 int myspeed = analogRead(10);
 void mstop()
 {
@@ -45,4 +45,4 @@ void loop() {
   {
     mstop();
   }
-}*/
+}
