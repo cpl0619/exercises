@@ -1,3 +1,3 @@
-/home/chris/eclipse-workspace/cardgame/build/default/CMakeFiles/rebuild_cache.dir
-/home/chris/eclipse-workspace/cardgame/build/default/CMakeFiles/edit_cache.dir
-/home/chris/eclipse-workspace/cardgame/build/default/CMakeFiles/cardgame.dir
+/home/chris/eclipse-workspace/exercises/cardgame/build/default/CMakeFiles/rebuild_cache.dir
+/home/chris/eclipse-workspace/exercises/cardgame/build/default/CMakeFiles/edit_cache.dir
+/home/chris/eclipse-workspace/exercises/cardgame/build/default/CMakeFiles/cardgame.dir

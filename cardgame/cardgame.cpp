@@ -8,18 +8,19 @@ public:
 	int suite;
 	int number;
 };
-// Suite: 0 = diamonds, 1 = clubs, 2 = hearts, and 3 = spades
+// Suite: 0 = hearts, 1 = diamonds, 2 = clubs, and 3 = spades
 // Numbers: 1 = Ace, 2 - 10 = 2 - 10, 11 = jack, 12 = queen, 13 = king
+// Value (most value to least): Spades, clubs, diamonds, hearts
 class deck {
 public:
-	int size = 52;
-	card Newdeck[52];
-
+	static const int size = 52;
+	card Newdeck[size];
 	deck() { deckinit(); }
 	~deck(){}
 	void deckinit();
 	void Cardshuffle();
 	void printdeck();
+	int morevaluablecard(card firstcard, card secondcard);
 };
 
 void deck::Cardshuffle() {
@@ -51,14 +52,67 @@ void deck::deckinit() {
 
 void deck::printdeck() {
 	for (int i = 0; i < size; i++){
-
-		std::cout << Newdeck[i].suite << ",";
-		std::cout << " " << Newdeck[i].number << std::endl;
+		
+		if (Newdeck[i].number == 1) {
+			std::cout << "Ace of ";
+		} else if (Newdeck[i].number == 11) {
+			std::cout << "Jack of ";
+	    } else if (Newdeck[i].number == 12) {
+			std::cout << "Queen of ";
+	    } else if (Newdeck[i].number == 13) {
+			std::cout << "King of ";
+	    } else  {	
+	    	std::cout << Newdeck[i].number << " of ";
+	    }
+		
+		if (Newdeck[i].suite == 0){
+			std::cout << "Diamonds" << std::endl;
+		}
+		else if (Newdeck[i].suite == 1) {
+			std::cout << "Clubs" << std::endl;
+		}
+		else if (Newdeck[i].suite == 2) {
+			std::cout << "Hearts" << std::endl;
+		}
+		else if (Newdeck[i].suite == 3) {
+			std::cout << "Spades" << std::endl;
+		}
 
 	}
 }
 
+// return value: 0 = first card is more valuable, 1 = second card is more valuable, -1 = error
+int deck::morevaluablecard(card firstcard, card secondcard) {
+	if(firstcard.suite == secondcard.suite){
+		return -1;
+	}
+	if(firstcard.number > 13 || secondcard.number > 13) {
+		return -1;
+	}
+	if(firstcard.number < 1 || secondcard.number < 1) {
+		return -1;
+	}
+	if(firstcard.suite > 3 || secondcard.suite > 3) {
+		return -1;
+	}
+	if(firstcard.suite < 0 || secondcard.suite  < 0) {
+		return -1;
+	}
 
+	if(firstcard.number == 1 && secondcard.number != 1){
+		return 0;
+	} else if (secondcard.number == 1 && firstcard.number != 1) {
+
+		return 1;
+
+	} else if (firstcard.suite + firstcard.number > secondcard.suite + secondcard.number) {
+		
+		return 0;
+	}
+
+	return 1;
+	
+}
 
 int main(int argc, char **argv) {
 
@@ -67,6 +121,17 @@ int main(int argc, char **argv) {
 	a.Cardshuffle();
 	std::cout << std::endl;
 	a.printdeck();
+	std::cout << std::endl;
+
+	card first;
+	card second;
+
+	first.number = 11;
+	first.suite = 2;
+	second.number = 19;
+	second.suite = -1;
+	
+	std::cout << a.morevaluablecard(first, second);
 
 	return 0;
 

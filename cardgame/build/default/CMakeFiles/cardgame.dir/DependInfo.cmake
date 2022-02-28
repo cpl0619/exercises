@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/chris/eclipse-workspace/cardgame/cardgame.cpp" "/home/chris/eclipse-workspace/cardgame/build/default/CMakeFiles/cardgame.dir/cardgame.cpp.o"
+  "/home/chris/eclipse-workspace/exercises/cardgame/cardgame.cpp" "/home/chris/eclipse-workspace/exercises/cardgame/build/default/CMakeFiles/cardgame.dir/cardgame.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/chris/eclipse-workspace/cardgame/cardgame.cpp
+/home/chris/eclipse-workspace/exercises/cardgame/cardgame.cpp
 iostream
 -
 stdio.h

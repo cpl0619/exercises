@@ -1,7 +1,7 @@
 [
 {
-  "directory": "/home/chris/eclipse-workspace/cardgame/build/default",
-  "command": "/usr/bin/c++    -o CMakeFiles/cardgame.dir/cardgame.cpp.o -c /home/chris/eclipse-workspace/cardgame/cardgame.cpp",
-  "file": "/home/chris/eclipse-workspace/cardgame/cardgame.cpp"
+  "directory": "/home/chris/eclipse-workspace/exercises/cardgame/build/default",
+  "command": "/usr/bin/c++    -o CMakeFiles/cardgame.dir/cardgame.cpp.o -c /home/chris/eclipse-workspace/exercises/cardgame/cardgame.cpp",
+  "file": "/home/chris/eclipse-workspace/exercises/cardgame/cardgame.cpp"
 }
 ]
