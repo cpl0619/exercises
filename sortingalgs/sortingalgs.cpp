@@ -43,7 +43,7 @@ int specialarray::back(){
 void specialarray::bubble_sort_ascending(){
 	int temp;
 	for(int i = 0; i < size - 1; i++){
-		for(int j = 0; j < size - 1; j++){
+		for(int j = 0; j < size - 2; j++){
 			if(array[j] > array[j + 1]){
 				temp = array[j];
 				array[j] = array[j + 1];
@@ -155,6 +155,6 @@ int main(int argc, char **argv) {
 	std::cout << "testing assert in function at()" << std::endl;
 	a.at(4);
 
-	a[9] = 8;
+
 	return 0;
 }
