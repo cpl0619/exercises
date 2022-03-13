@@ -7,13 +7,14 @@
 
 class specialarray{
 private:
-	static const int size = 10;
+	int size;
+	int *array;
 public:
-	int array[size];
-	specialarray();
+	specialarray(int arrsize);
 	void selection_sort_ascending();
 	void selection_sort_descending();
 	void bubble_sort_ascending();
+	void bubble_sort_descending();
 	int search(int a);
 	int getsize();
 	void printarray();
@@ -23,9 +24,20 @@ public:
 	int front();
 	int back();
 	int at(int idx);
+	void initarray();
 	//add sum, multiply, average, descending, binary search, bubble sort,
 	//dynamic array instead of static
 };
+
+void specialarray::initarray(){
+	srand(time(NULL));
+	for(int i = 0; i < size - 1; i++) {
+		// This is dereference method for pointers only
+			*(array + i) = rand() % 50;
+			// This is a normal array method, this also works with pointers
+			//array[i] = rand() % 50;
+		}
+}
 
 int specialarray::at(int idx){
 	assert(idx < size - 1 && idx > 0);
@@ -45,6 +57,19 @@ void specialarray::bubble_sort_ascending(){
 	for(int i = 0; i < size - 1; i++){
 		for(int j = 0; j < size - 2; j++){
 			if(array[j] > array[j + 1]){
+				temp = array[j];
+				array[j] = array[j + 1];
+				array[j + 1] = temp;
+			}
+		}
+	}
+}
+
+void specialarray::bubble_sort_descending(){
+	int temp;
+	for(int i = 0; i < size - 1; i++){
+		for(int j = 0; j < size - 2; j++){
+			if(array[j] < array[j + 1]){
 				temp = array[j];
 				array[j] = array[j + 1];
 				array[j + 1] = temp;
@@ -87,8 +112,10 @@ int specialarray::getsize(){
 	return size;
 }
 
-specialarray::specialarray(){
-//This does nothing for now
+specialarray::specialarray(int arrsize){
+	size = arrsize;
+	array = new int(size);
+
 }
 
 void specialarray::selection_sort_ascending(){
@@ -134,11 +161,7 @@ void specialarray::printarray(){
 }
 
 int main(int argc, char **argv) {
-	srand(time(NULL));
-	specialarray a;
-	for(int i = 0; i < a.getsize(); i++) {
-		a.array[i] = rand() % 50;
-	}
+	specialarray a(10);
 	a.printarray();
 	int userinput;
 	std::cout << "choose a number to find: ";
