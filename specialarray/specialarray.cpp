@@ -10,6 +10,7 @@ private:
 	int *array;
 public:
 	specialarray(int arrsize);
+	~specialarray();
 	void selection_sort_ascending();
 	void selection_sort_descending();
 	void bubble_sort_ascending();
@@ -117,6 +118,9 @@ specialarray::specialarray(int arrsize){
 	initarray();
 }
 
+specialarray::~specialarray(){
+	delete[size]array;
+}
 void specialarray::selection_sort_ascending(){
 	int lowest = INT_MAX;
 	int lowin;
