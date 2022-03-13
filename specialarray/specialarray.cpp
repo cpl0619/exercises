@@ -113,13 +113,15 @@ int specialarray::getsize(){
 }
 
 specialarray::specialarray(int arrsize){
+	std::cout << "Constructor" << std::endl;
 	size = arrsize;
 	array = new int[size];
 	initarray();
 }
 
 specialarray::~specialarray(){
-	delete[size]array;
+	std::cout << "Destructor" << std::endl;	
+	delete[]array;
 }
 void specialarray::selection_sort_ascending(){
 	int lowest = INT_MAX;
