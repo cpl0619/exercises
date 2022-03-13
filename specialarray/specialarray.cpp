@@ -113,7 +113,7 @@ int specialarray::getsize(){
 
 specialarray::specialarray(int arrsize){
 	size = arrsize;
-	array = new int(size);
+	array = new int[size];
 	initarray();
 }
 
