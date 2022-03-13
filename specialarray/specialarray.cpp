@@ -4,7 +4,6 @@
 #include <climits>
 #include <assert.h>
 
-
 class specialarray{
 private:
 	int size;
@@ -115,7 +114,7 @@ int specialarray::getsize(){
 specialarray::specialarray(int arrsize){
 	size = arrsize;
 	array = new int(size);
-
+	initarray();
 }
 
 void specialarray::selection_sort_ascending(){
@@ -156,7 +155,7 @@ void specialarray::selection_sort_descending(){
 
 void specialarray::printarray(){
 	for (int i = 0; i < size - 1; i++){
-		std::cout << array[i] << std::endl;
+		std::cout << *(array + i) << std::endl;
 	}
 }
 
