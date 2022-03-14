@@ -9,6 +9,7 @@ private:
 	int size;
 	int *array;
 public:
+	specialarray();
 	specialarray(int arrsize);
 	~specialarray();
 	void selection_sort_ascending();
@@ -96,6 +97,7 @@ int specialarray::sum(){
 	for (int i = 0; i < size - 1; i++){
 		a = a + array[i];
 	}
+	//this function will return 0 for empty array
 	return a;
 }
 
@@ -110,6 +112,11 @@ int specialarray::search(int a){
 
 int specialarray::getsize(){
 	return size;
+}
+
+specialarray::specialarray(){
+	size = 0;
+	array = NULL;
 }
 
 specialarray::specialarray(int arrsize){
@@ -160,12 +167,16 @@ void specialarray::selection_sort_descending(){
 }
 
 void specialarray::printarray(){
+	if (size == 0) {
+		std::cout << "empty array" << std::endl;
+	}
 	for (int i = 0; i < size - 1; i++){
 		std::cout << *(array + i) << std::endl;
 	}
 }
 
 int main(int argc, char **argv) {
+	specialarray a2;	
 	specialarray a(10);
 	a.printarray();
 	int userinput;
