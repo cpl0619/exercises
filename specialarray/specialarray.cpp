@@ -26,8 +26,10 @@ public:
 	int back();
 	int at(int idx);
 	void initarray();
-	//add sum, multiply, average, descending, binary search, bubble sort,
-	//dynamic array instead of static
+	// add these member functions:
+	// push back, pop back, resize, empty, swap
+	// overload operator[], insert
+	// relational operators (==, !=, <, >, <=, >=)
 };
 
 void specialarray::initarray(){
@@ -193,7 +195,6 @@ int main(int argc, char **argv) {
 	a.printarray();
 	std::cout << "testing assert in function at()" << std::endl;
 	a.at(4);
-
 
 	return 0;
 }
