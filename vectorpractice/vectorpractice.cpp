@@ -21,7 +21,8 @@ void initvectorrand(std::vector<int> *a, int limit, int randlim){
 
 void printvector(std::vector<int> a){
 	for (int i = 0; i < a.size(); i++){
-		std::cout << a.at(i) << std::endl;
+		std::cout << a[i] << std::endl;
+		//std::cout << a.at(i) << std::endl;
 	}
 }
 
