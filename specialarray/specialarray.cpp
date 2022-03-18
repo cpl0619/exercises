@@ -7,8 +7,8 @@
 class specialarray{
 private:
 	int size;
-	int *array;
 public:
+	int *array;
 	specialarray();
 	specialarray(int arrsize);
 	~specialarray();
@@ -26,11 +26,98 @@ public:
 	int back();
 	int at(int idx);
 	void initarray();
+	int relational(specialarray a, specialarray b);
+	int relationalNOT(specialarray a, specialarray b);
+	int relationalLESS(specialarray a, specialarray b);
+	int relationalMORE(specialarray a, specialarray b);
+	int relationalLESSEQUAL(specialarray a, specialarray b);
+	int relationalMOREEQUAL(specialarray a, specialarray b);
+	int swap(specialarray a, specialarray b);
 	// add these member functions:
 	// push back, pop back, resize, empty, swap
 	// overload operator[], insert
 	// relational operators (==, !=, <, >, <=, >=)
 };
+
+int specialarray::swap(specialarray a, specialarray b){
+	int temp; 
+	if(a.getsize() != b.getsize()){
+		return -1;
+	}
+	for(int i = 0;i < a.getsize() - 1; i++){
+		temp = a.array[i];
+		a.array[i] = b.array[i];
+		b.array[i] = temp;
+	}
+	return 0;
+}
+
+int specialarray::relationalLESSEQUAL(specialarray a, specialarray b){
+	if (a.size != b.size){
+		return 0;
+	} else {
+		if(a.sum() <= b.sum()){
+			return 0;
+		}
+	}
+	return 0;
+}
+int specialarray::relationalMOREEQUAL(specialarray a, specialarray b){
+	if (a.size != b.size){
+		return 0;
+	} else {
+		if(a.sum() >= b.sum()){
+			return 0;
+		}
+	}
+	return 0;
+}
+int specialarray::relationalNOT(specialarray a, specialarray b){
+	if (a.size != b.size){
+		return 0;
+	} else {
+		if(a.sum() != b.sum()){
+			return 0;
+		}
+	}
+	return 0;
+}
+
+int specialarray::relational(specialarray a, specialarray b){
+	if (a.size != b.size){
+		return 0;
+	} else {
+		if(a.sum() == b.sum()){
+			return 0;
+		}
+	}
+	return 0;
+}
+
+
+int specialarray::relationalLESS(specialarray a, specialarray b){
+	if (a.size != b.size){
+		return 0;
+	} else {
+		if(a.sum() < b.sum()){
+			return 0;
+		}
+	}
+	return 0;
+}
+
+
+int specialarray::relationalMORE(specialarray a, specialarray b){
+	if (a.size != b.size){
+		return 0;
+	} else {
+		if(a.sum() > b.sum()){
+			return 0;
+		}
+	}
+	return 0;
+}
+
 
 void specialarray::initarray(){
 	srand(time(NULL));
@@ -177,8 +264,9 @@ void specialarray::printarray(){
 	}
 }
 
+
 int main(int argc, char **argv) {
-	specialarray a2;	
+	specialarray a2(10);	
 	specialarray a(10);
 	a.printarray();
 	int userinput;
@@ -195,6 +283,11 @@ int main(int argc, char **argv) {
 	a.printarray();
 	std::cout << "testing assert in function at()" << std::endl;
 	a.at(4);
-
+	a.printarray();
+	std::cout << std::endl;
+	a2.printarray();
+	a.swap(a, a2);	
+	a.printarray();
+	
 	return 0;
 }
