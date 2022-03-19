@@ -32,22 +32,22 @@ public:
 	int relationalMORE(specialarray a, specialarray b);
 	int relationalLESSEQUAL(specialarray a, specialarray b);
 	int relationalMOREEQUAL(specialarray a, specialarray b);
-	int swap(specialarray a, specialarray b);
+	int swap(specialarray *a, specialarray *b);
 	// add these member functions:
 	// push back, pop back, resize, empty, swap
 	// overload operator[], insert
 	// relational operators (==, !=, <, >, <=, >=)
 };
 
-int specialarray::swap(specialarray a, specialarray b){
+int specialarray::swap(specialarray *a, specialarray *b){
 	int temp; 
-	if(a.getsize() != b.getsize()){
+	if(a->getsize() != b->getsize()){
 		return -1;
 	}
-	for(int i = 0;i < a.getsize() - 1; i++){
-		temp = a.array[i];
-		a.array[i] = b.array[i];
-		b.array[i] = temp;
+	for(int i = 0;i < a->getsize() - 1; i++){
+		temp = a->array[i];
+		a->array[i] = b->array[i];
+		b->array[i] = temp;
 	}
 	return 0;
 }
@@ -286,7 +286,7 @@ int main(int argc, char **argv) {
 	a.printarray();
 	std::cout << std::endl;
 	a2.printarray();
-	a.swap(a, a2);	
+	a.swap(&a, &a2);	
 	a.printarray();
 	
 	return 0;
