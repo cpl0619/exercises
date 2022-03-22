@@ -33,11 +33,54 @@ public:
 	int relationalLESSEQUAL(specialarray a, specialarray b);
 	int relationalMOREEQUAL(specialarray a, specialarray b);
 	int swap(specialarray *a, specialarray *b);
+	specialarray addarrays(specialarray b);
+	int sumarrays(specialarray a, specialarray b);
+	int subtractarrays(specialarray a, specialarray b);
+	int multiplyarrays(specialarray a, specialarray b);
+	int dividearrays(specialarray a, specialarray b);
 	// add these member functions:
 	// push back, pop back, resize, empty, swap
 	// overload operator[], insert
 	// relational operators (==, !=, <, >, <=, >=)
 };
+//this function builds and compiles okay but does not work until
+//we overload the assignment operator "="
+
+specialarray specialarray::addarrays(specialarray b){
+	specialarray temp1;
+	if (this->size != b.size){
+		return temp1;
+	} 
+	specialarray temp(this->size);
+	for(int i = 0; i < this->size; i++){
+		temp.array[i] = this->array[i] + b.array[i];
+	}
+	return temp;
+}
+
+int specialarray::sumarrays(specialarray a, specialarray b){
+	int sumofarrays;
+	sumofarrays = a.sum() + b.sum();
+	return sumofarrays;
+}
+
+int specialarray::subtractarrays(specialarray a, specialarray b){
+	int sumofarrays;
+	sumofarrays = a.sum() - b.sum();
+	return sumofarrays;
+}
+
+int specialarray::multiplyarrays(specialarray a, specialarray b){
+	int sumofarrays;
+	sumofarrays = a.sum() * b.sum();
+	return sumofarrays;
+}
+
+int specialarray::dividearrays(specialarray a, specialarray b){
+	int sumofarrays;
+	sumofarrays = a.sum() / b.sum();
+	return sumofarrays;
+}
 
 int specialarray::swap(specialarray *a, specialarray *b){
 	int temp; 
@@ -259,7 +302,7 @@ void specialarray::printarray(){
 	if (size == 0) {
 		std::cout << "empty array" << std::endl;
 	}
-	for (int i = 0; i < size - 1; i++){
+	for (int i = 0; i < size; i++){
 		std::cout << *(array + i) << std::endl;
 	}
 }
@@ -274,37 +317,20 @@ void bar(const int *a){
 }
 
 void blah(const int &a){
-	std::cout << *a << std::endl;
+	std::cout << a << std::endl;
 	std::cout << a << std::endl;
 }
 
 int main(int argc, char **argv) {
-	int var = 5;
-	foo(var);
-	bar(&var);
-	blah(var);
-	specialarray a2(10);	
-	specialarray a(10);
-	a.printarray();
-	int userinput;
-	std::cout << "choose a number to find: ";
-	std::cin >> userinput;
-	int b = a.search(userinput);
-	if(b == -1){
-		std::cout << "not found" << std::endl;
-	} else {
-		std::cout << " at index " << b << std::endl;
-	}
-	std::cout << std::endl;
-	a.bubble_sort_ascending();
-	a.printarray();
-	std::cout << "testing assert in function at()" << std::endl;
-	a.at(4);
+	specialarray a2(5);	
+	specialarray a(5);
+	std::cout << "a array" << std::endl;
 	a.printarray();
 	std::cout << std::endl;
+	std::cout << "a2 array" << std::endl;
 	a2.printarray();
-	a.swap(&a, &a2);	
-	a.printarray();
-	
+	specialarray b = a.addarrays(a2);
+	std::cout << "b array" << std::endl;
+	b.printarray();
 	return 0;
 }
