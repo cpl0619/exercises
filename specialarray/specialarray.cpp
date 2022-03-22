@@ -264,8 +264,25 @@ void specialarray::printarray(){
 	}
 }
 
+void foo(int a){
+	std::cout << a << std::endl;
+}
+
+void bar(const int *a){
+	std::cout << *a << std::endl;
+	std::cout << a << std::endl;
+}
+
+void blah(const int &a){
+	std::cout << *a << std::endl;
+	std::cout << a << std::endl;
+}
 
 int main(int argc, char **argv) {
+	int var = 5;
+	foo(var);
+	bar(&var);
+	blah(var);
 	specialarray a2(10);	
 	specialarray a(10);
 	a.printarray();
