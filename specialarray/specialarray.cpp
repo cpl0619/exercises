@@ -11,6 +11,7 @@ public:
 	int *array;
 	specialarray();
 	specialarray(int arrsize);
+	specialarray(const specialarray &r);
 	~specialarray();
 	void selection_sort_ascending();
 	void selection_sort_descending();
@@ -38,13 +39,58 @@ public:
 	int subtractarrays(specialarray a, specialarray b);
 	int multiplyarrays(specialarray a, specialarray b);
 	int dividearrays(specialarray a, specialarray b);
+	specialarray& operator=(const specialarray &r);
+	specialarray operator+(const specialarray &a);
 	// add these member functions:
 	// push back, pop back, resize, empty, swap
 	// overload operator[], insert
 	// relational operators (==, !=, <, >, <=, >=)
+	// +, -, *, /, %, a+=b,
 };
 //this function builds and compiles okay but does not work until
 //we overload the assignment operator "="
+
+specialarray specialarray::operator+(const specialarray &a){
+	specialarray b;
+	b.size = this->size +  a.size;
+	for(int i = 0; i < a.size; i++){
+		b.array[i] = this->array[i] + a.array[i]; 
+	}
+	return b;
+}
+
+specialarray& specialarray::operator=(const specialarray &r){
+	if (r.size == 0){
+		//condition 1: r.size = 0
+		this->size = 0;	
+		if (this->array != NULL){
+			delete [] this->array;
+		}
+		this->array = NULL;
+	} else {		
+		if (this->array == NULL){
+			//condition 2: this->size = 0
+			//created new array for this object
+			this->size = r.size;
+			array = new int[r.size];
+		} else {
+		//condition 3: r.size < this->size
+		//condition 4: r.size > this->size
+		//for either condition, delete existing array
+		//and create new array
+			if (this->size != r.size){
+				delete [] this->array;
+				this->size = r.size;
+			}
+				
+			this->array = new int[r.size];
+		}
+		for(int i = 0; i < r.size; i++){
+			this->array[i] = r.array[i]; 
+		}
+	}		
+	return *this;
+}
 
 specialarray specialarray::addarrays(specialarray b){
 	specialarray temp1;
@@ -166,7 +212,7 @@ void specialarray::initarray(){
 	srand(time(NULL));
 	for(int i = 0; i < size - 1; i++) {
 		// This is dereference method for pointers only
-			*(array + i) = rand() % 50;
+			*(array + i) = (rand() % 50) * size;
 			// This is a normal array method, this also works with pointers
 			//array[i] = rand() % 50;
 		}
@@ -258,6 +304,13 @@ specialarray::specialarray(int arrsize){
 	initarray();
 }
 
+specialarray::specialarray(const specialarray &r){
+	this->size = r.size;
+	for(int i = 0; i < r.size; i++){
+		this->array[i] = r.array[i]; 
+	}
+}
+
 specialarray::~specialarray(){
 	std::cout << "Destructor" << std::endl;	
 	delete[]array;
@@ -311,14 +364,16 @@ void foo(int a){
 	std::cout << a << std::endl;
 }
 
-void bar(const int *a){
+void bar(int *a){
 	std::cout << *a << std::endl;
 	std::cout << a << std::endl;
+	*a = 10;
 }
 
-void blah(const int &a){
+void blah(int &a){
 	std::cout << a << std::endl;
 	std::cout << a << std::endl;
+	a = 11;
 }
 
 int main(int argc, char **argv) {
@@ -326,11 +381,22 @@ int main(int argc, char **argv) {
 	specialarray a(5);
 	std::cout << "a array" << std::endl;
 	a.printarray();
+/*
 	std::cout << std::endl;
 	std::cout << "a2 array" << std::endl;
 	a2.printarray();
 	specialarray b = a.addarrays(a2);
 	std::cout << "b array" << std::endl;
 	b.printarray();
+*/
+	specialarray c(4);
+	std::cout << " printing c before assignment "  << std::endl;
+	c.printarray();
+	std::cout << std::endl;
+	c = a;
+	std::cout << " printing c after "  << std::endl;
+	c.printarray();
+	//	specialarray x(10);
+	//x = a;
 	return 0;
 }
