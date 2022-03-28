@@ -75,7 +75,9 @@ specialarray& specialarray::operator+(const specialarray &r){
 			//specialarray a(5)
 			//specialarray b(4)
 			//specialarray c = a + b;
-				specialarray temp = *this;
+				//specialarray temp = *this;
+				specialarray temp;
+				temp = *this;
 				delete [] this->array;
 				this->size = r.size;
 				this->array = new int[r.size];
@@ -101,35 +103,37 @@ specialarray& specialarray::operator+(const specialarray &r){
 }
 
 specialarray& specialarray::operator=(const specialarray &r){
-	if (r.size == 0){
-		//condition 1: r.size = 0
-		this->size = 0;	
-		if (this->array != NULL){
-			delete [] this->array;
-		}
-		this->array = NULL;
-	} else {		
-		if (this->array == NULL){
-			//condition 2: this->size = 0
-			//created new array for this object
-			this->size = r.size;
-			array = new int[r.size];
-		} else {
-		//condition 3: r.size < this->size
-		//condition 4: r.size > this->size
-		//for either condition, delete existing array
-		//and create new array
-			if (this->size != r.size){
+	if(this != &r){
+		if (r.size == 0){
+			//condition 1: r.size = 0
+			this->size = 0;	
+			if (this->array != NULL){
 				delete [] this->array;
-				this->size = r.size;
-				this->array = new int[r.size];
 			}
-				
-		}
-		for(int i = 0; i < r.size; i++){
-			this->array[i] = r.array[i]; 
-		}
-	}		
+			this->array = NULL;
+		} else {		
+			if (this->array == NULL){
+				//condition 2: this->size = 0
+				//created new array for this object
+				this->size = r.size;
+				array = new int[r.size];
+			} else {
+			//condition 3: r.size < this->size
+			//condition 4: r.size > this->size
+			//for either condition, delete existing array
+			//and create new array
+				if (this->size != r.size){
+					delete [] this->array;
+					this->size = r.size;
+					this->array = new int[r.size];
+				}
+					
+			}
+			for(int i = 0; i < r.size; i++){
+				this->array[i] = r.array[i]; 
+			}
+		}		
+	}
 	return *this;
 }
 
@@ -437,8 +441,11 @@ int main(int argc, char **argv) {
 	std::cout << "a2 array" << std::endl;
 	a2.printarray();
 	std::cout << std::endl;
-	c =  a2 + c;
+	c = a2 + c;
 	std::cout << " printing c after "  << std::endl;
+	c.printarray();
+	c = c;
+	std::cout << " printing c1 after "  << std::endl;
 	c.printarray();
 	//	specialarray x(10);
 	//x = a;
