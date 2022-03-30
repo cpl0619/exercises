@@ -7,8 +7,8 @@
 class specialarray{
 private:
 	int size;
-public:
 	int *array;
+public:
 	specialarray();
 	specialarray(int arrsize);
 	specialarray(const specialarray &r);
@@ -45,6 +45,10 @@ public:
 	specialarray& operator*(const specialarray &r);
 	specialarray& operator/(const specialarray &r);
 	specialarray& operator+=(const specialarray &r);
+	int& operator[](int r);
+	int operator>(specialarray &r);
+	int operator<(specialarray &r);
+	int operator==(specialarray &r);
 	// add these member functions:
 	// push back, pop back, resize, empty, swap
 	// overload operator[], insert
@@ -53,6 +57,34 @@ public:
 };
 //this function builds and compiles okay but does not work until
 //we overload the assignment operator "="
+
+int& specialarray::operator[](int r){
+	assert (r >= 0 && r < this->size);
+	return this->array[r];
+}
+
+
+int specialarray::operator<(specialarray &r){
+	if(this->sum() < r.sum()){
+		return 1;
+	}
+	return 0;
+}
+
+int specialarray::operator>(specialarray &r){
+	if(this->sum() > r.sum()){
+		return 1;
+	}
+	return 0;
+}
+
+int specialarray::operator==(specialarray &r){
+	if(this->size == r.size && this->sum() == r.sum()){
+		return 1;
+	}
+	return 0;
+}
+
 
 specialarray& specialarray::operator+(const specialarray &r){
 	//condition 1; r.size == 0
@@ -66,6 +98,9 @@ specialarray& specialarray::operator+(const specialarray &r){
 			//created new array for this object
 			this->size = r.size;
 			array = new int[r.size];
+			for(int i = 0; i < r.size; i++){
+				this->array[i] = 0;
+			}
 		} else {
 		//specialarray a(5)
 		//specialarray b(5)
@@ -123,6 +158,9 @@ specialarray& specialarray::operator-(const specialarray &r){
 			//created new array for this object
 			this->size = r.size;
 			array = new int[r.size];
+			for(int i = 0; i < r.size; i++){
+				this->array[i] = 0;
+			}
 		} else {
 		//specialarray a(5)
 		//specialarray b(5)
@@ -175,6 +213,9 @@ specialarray& specialarray::operator*(const specialarray &r){
 			//created new array for this object
 			this->size = r.size;
 			array = new int[r.size];
+			for(int i = 0; i < r.size; i++){
+				this->array[i] = 0;
+			}
 		} else {
 		//specialarray a(5)
 		//specialarray b(5)
@@ -212,6 +253,71 @@ specialarray& specialarray::operator*(const specialarray &r){
 			this->array[i] = this->array[i] * r.array[i];    
 		}
 	}		
+	if (r.size == 0){
+		for(int i = 0; i < this->size; i++){
+			this->array[i] = 0;
+		}
+	}
+	return *this;
+}
+
+specialarray& specialarray::operator/(const specialarray &r){
+	//condition 1; r.size == 0
+
+	//condition 2: r.size != 0
+	if (r.size != 0){
+		if (this->size == 0){
+			//specialarray a
+			//specialarray b(5)
+			//specialarray c = a + b;
+			//created new array for this object
+			this->size = r.size;
+			array = new int[r.size];
+			for(int i = 0; i < r.size; i++){
+				this->array[i] = 0;
+			}
+		} else {
+		//specialarray a(5)
+		//specialarray b(5)
+		//specialarray c = a + b;
+		//condition 3: r.size < this->size
+		//condition 4: r.size > this->size
+		//for either condition, delete existing array
+		//and create new array and copy old array elements
+		
+			if (this->size != r.size){
+			//specialarray a(5)
+			//specialarray b(4)
+			//specialarray c = a + b;
+				//specialarray temp = *this;
+				specialarray temp;
+				temp = *this;
+				delete [] this->array;
+				this->size = r.size;
+				this->array = new int[r.size];
+				for (int i = 0; i < r.size; i++){
+					this->array[i] = temp.array[i];
+				}
+				if (temp.size < r.size){
+				//specialarray a(5)
+				//specialarray b(6)
+				//specialarray c = a + b;
+					for (int i = temp.size; i < r.size; i++){
+						this->array[i] = 0;
+					}
+				}
+		 
+			}
+		}
+		for(int i = 0; i < r.size; i++){
+			this->array[i] = this->array[i] / r.array[i];    
+		}
+	}		
+	if (r.size == 0){
+		for(int i = 0; i < this->size; i++){
+			this->array[i] = 0;
+		}
+	}
 	return *this;
 }
 
@@ -540,6 +646,17 @@ int main(int argc, char **argv) {
 	specialarray a(5);
 	std::cout << "a array" << std::endl;
 	a.printarray();
+	std::cout << std::endl;
+	int var = a[4];
+	std::cout << var << std::endl;
+	a[2] = 1000;	
+	a.printarray();
+/*
+	int hi;
+	std::cout << "new a" << std::endl;
+	hi = a < a2;
+	std::cout << hi << std::endl;
+
 /*
 	std::cout << std::endl;
 	std::cout << "a2 array" << std::endl;
@@ -565,9 +682,9 @@ int main(int argc, char **argv) {
 	//	specialarray x(10);
 	//x = a;
 */
-	specialarray b = a;
-	std::cout << "b array" << std::endl;
-	b.printarray();
+//	specialarray b = a;
+//	std::cout << "b array" << std::endl;
+//	b.printarray();
 	
 	return 0;
 }
