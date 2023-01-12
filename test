@@ -70,6 +70,10 @@ int choicep2(){
     }
 }
 
+int fillcheck(){
+    //checks if whole board is filled to determine if tied
+}
+
 int wincheckp1(char array[9]){
     if(array[0] == 'X' && array[1] == 'X' && array[2] == 'X'){
         return 1;
@@ -161,8 +165,12 @@ void playtictactoe(){
                     break;
                 }
             }
+            if(wincheckp2(board) == 0 && wincheckp1(board) == 0 && fillcheck(board) == 1){
+                    std::cout<< "Tie!" <<std::endl;
+                    break;
         }
     }
+}
 
 
 int main(){
