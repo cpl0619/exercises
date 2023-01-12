@@ -71,56 +71,56 @@ int choicep2(){
 }
 
 int wincheckp1(char array[9]){
-    if(array[0] == 'X' && array[1] == 'X' && array[2]){
+    if(array[0] == 'X' && array[1] == 'X' && array[2] == 'X'){
         return 1;
     }
-        if(array[3] =='X' && array[4] == 'X' && array[5]){
+        if(array[3] =='X' && array[4] == 'X' && array[5] == 'X'){
         return 1;
         }
-            if(array[6] == 'X' && array[7] == 'X' && array[8]){
+            if(array[6] == 'X' && array[7] == 'X' && array[8] == 'X'){
             return 1;
             }
-                if(array[0] == 'X' && array[3] == 'X' && array[6]){
+                if(array[0] == 'X' && array[3] == 'X' && array[6] == 'X'){
                 return 1;
                 }
-                    if(array[1] == 'X' && array[4] == 'X' && array[7]){
+                    if(array[1] == 'X' && array[4] == 'X' && array[7] == 'X'){
                     return 1;
                     }
-                        if(array[2] == 'X' && array[5] == 'X' && array[8]){
+                        if(array[2] == 'X' && array[5] == 'X' && array[8] == 'X'){
                         return 1;
                         }
-                            if(array[0] == 'X' && array[4] == 'X' && array[8]){
+                            if(array[0] == 'X' && array[4] == 'X' && array[8] == 'X'){
                             return 1;
                             }
-                                if(array[2] == 'X' && array[4] == 'X' && array[6]){
+                                if(array[2] == 'X' && array[4] == 'X' && array[6] == 'X'){
                                 return 1;
                                 }
                                 return 0;
 }
 
 int wincheckp2(char array[9]){
-    if(array[0] == 'O' && array[1] == 'O' && array[2]){
+    if(array[0] == 'O' && array[1] == 'O' && array[2] == 'O'){
         return 1;
     }
-        if(array[3] == 'O' && array[4] == 'O' && array[5]){
+        if(array[3] == 'O' && array[4] == 'O' && array[5] == 'O'){
         return 1;
         }
-            if(array[6] == 'O' && array[7] == 'O' && array[8]){
+            if(array[6] == 'O' && array[7] == 'O' && array[8] == 'O'){
             return 1;
             }
-                if(array[0] == 'O' && array[3] == 'O' && array[6]){
+                if(array[0] == 'O' && array[3] == 'O' && array[6] == 'O'){
                 return 1;
                 }
-                    if(array[1] == 'O' && array[4] == 'O' && array[7]){
+                    if(array[1] == 'O' && array[4] == 'O' && array[7] == 'O'){
                     return 1;
                     }
-                        if(array[2] == 'O' && array[5] == 'O' && array[8]){
+                        if(array[2] == 'O' && array[5] == 'O' && array[8] == 'O'){
                         return 1;
                         }
-                            if(array[0] == 'O' && array[4] == 'O' && array[8]){
+                            if(array[0] == 'O' && array[4] == 'O' && array[8] == 'O'){
                             return 1;
                             }
-                                if(array[2] == 'O' && array[4] == 'O' && array[6]){
+                                if(array[2] == 'O' && array[4] == 'O' && array[6] == 'O'){
                                 return 1;
                                 }
                                 return 0;
@@ -146,6 +146,7 @@ void playtictactoe(){
                     std::cout<< "PLAYER1 WINS!" <<std::endl;
                     break;
                 }
+            }
             charboardout(board);
             std::cout << std::endl;
             choiceboardout();
@@ -162,7 +163,6 @@ void playtictactoe(){
             }
         }
     }
-}
 
 
 int main(){
